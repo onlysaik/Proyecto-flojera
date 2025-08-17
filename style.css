@@ -1,0 +1,89 @@
+/* fondo degradado gamer */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #29294d);
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* contenedor centrado */
+.container {
+    text-align: center;
+}
+
+button {
+padding: 10px 20px;
+font-size: 1.2em;
+background-color: #30b033;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+color: white;
+transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #269127;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    width: 80%;
+    font-size: 1em;
+}
+
+/* tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1e1e2f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #30b033;
+    color: #ffffff;
+}
+
+tr:nth-child(even) {
+    background-color: #2e2e48;
+}
+
+/* Botones de filtro */
+#filterButtons {
+    margin: 15px 0;
+}
+
+#filterButtons button {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #30b033;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#filterButtons button:hover {
+    background-color: #269127;
+}
+
+#filterButtons button.active {
+    background-color: #1a701a;
+}

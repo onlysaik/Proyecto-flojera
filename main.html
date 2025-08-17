@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Gamer Otaku - Principal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Videojuegos y Animes</h1>
+
+        <!-- filtro de Busqueda: -->
+        <input type="text" id="searchInput" placeholder="Buscar...">
+
+        <!-- Botones de filtro -->
+         <div id="filterButtons">
+            <button data-category="all">Todos</button>
+            <button data-category="Videojuego">Videojuegos</button>
+            <button data-category="Anime">Animes</button>
+         </div>
+
+        <!-- Tabla -->
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Dato Curioso</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+                <!-- Los datos se llenarán dinámicamente con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
