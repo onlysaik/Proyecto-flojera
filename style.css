@@ -17,6 +17,7 @@ body {
 }
 
 button {
+margin-bottom: 10px;
 padding: 10px 20px;
 font-size: 1.2em;
 background-color: #30b033;
@@ -86,4 +87,36 @@ tr:nth-child(even) {
 
 #filterButtons button.active {
     background-color: #1a701a;
+}
+
+#questionBox {
+    margin: 20px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#options {
+    margin: 20px 0;
+}
+
+#options button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2e2e48;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#options button:hover {
+    background-color: #44446b;
+}
+
+#result {
+    font-size: 1.1em;
+    margin: 15px 0;
 }
