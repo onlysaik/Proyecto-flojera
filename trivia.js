@@ -36,6 +36,11 @@ const questionText = document.getElementById("questionText");
 const optionsDiv = document.getElementById("options");
 const resultText = document.getElementById("result");
 const nextBtn = document.getElementById("nextBtn");
+const highScoreText = document.getElementById("highScore");
+
+// Cargar récord personal
+let highScore = localStorage.getItem("highScore") || 0;
+highScoreText.textContent = `Récord personal: ${highScore}`;
 
 // Mostrar una pregunta
 function mostrarPregunta() {
@@ -75,6 +80,14 @@ nextBtn.addEventListener("click", () => {
         questionText.textContent = "🏆 Trivia terminada!";
         optionsDiv.innerHTML = "";
         resultText.textContent = `Tu puntaje final: ${score}/${preguntas.length}`;
+
+        // Guardar récord personal
+        if (score > highScore) {
+            localStorage.setItem("highScore", score);
+            highScore = score;
+            highScoreText.textContent = `Récord personal: ${highScore}`;
+            resultText.textContent += " 🎉 ¡Nuevo récord personal!";
+        }
         nextBtn.style.display = "none";
     }
 });
