@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Gamer Otaku - Principal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Videojuegos y Animes</h1>
+        <p id="userProfile"></p>
+        <div id="profile">
+            <h2>👤 Perfil</h2>
+            <img id="playerAvatar" src="" alt="Avatar" width="80" height="80">
+            <div id="avatarSelection">
+                <p>Elige tu avatar:</p>
+                <button class="avatarBtn" data-avatar="https://i.ibb.co/7VZzjR1/avatar1.png">🐱</button>
+                <button class="avatarBtn" data-avatar="https://i.ibb.co/ZVh4m8f/avatar2.png">🐉</button>
+                <button class="avatarBtn" data-avatar="https://i.ibb.co/0nTtV5y/avatar3.png">🤖</button>
+                <button class="avatarBtn" data-avatar="https://i.ibb.co/y6S2V4g/avatar4.png">👾</button>
+            </div>
+        </div>
+
+        <div id="stats">
+            <p>📊 Partidas jugadas: <span id="statGames">0</span></p>
+            <p>⭐ Promedio de puntaje: <span id="statAvg">0</span></p>
+            <p>💯 Mejor puntaje: <span id="statHigh">0</span></p>
+            <p>⚡ Nivel: <span id="statLevel">1</span></p>
+        </div>
+        <div id="achievements">
+            <h2>🏆 Logros</h2>
+            <ul id="achievementsList"></ul>
+        </div>
+
+
+        <a href="trivia.html"><button>Ir a la Trivia</button></a>
+
+        <!-- filtro de Busqueda: -->
+        <input type="text" id="searchInput" placeholder="Buscar...">
+
+        <!-- Botones de filtro -->
+        <div id="filterButtons">
+            <button data-category="all">Todos</button>
+            <button data-category="Videojuego">Videojuegos</button>
+            <button data-category="Anime">Animes</button>
+        </div>
+
+        <!-- Tabla -->
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Dato Curioso</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+                <!-- Los datos se llenarán dinámicamente con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const username = localStorage.getItem("username") || "Invitado";
+        const avatar = localStorage.getItem("avatar") || "👾";
+        document.getElementById("userProfile").textContent = `Bienvenido, ${avatar} ${username}`;
+    </script>
+    <script>
+        const games = parseInt(localStorage.getItem("games")) || 0;
+        const totalScore = parseInt(localStorage.getItem("totalScore")) || 0;
+        const highScore = parseInt(localStorage.getItem("highScore")) || 0;
+
+        const avg = games > 0 ? (totalScore / games).toFixed(1) : 0;
+        const level = Math.floor(totalScore / 5) + 1;
+        const progress = totalScore % 5;
+
+        document.getElementById("statGames").textContent = games;
+        document.getElementById("statAvg").textContent = avg;
+        document.getElementById("statHigh").textContent = highScore;
+        document.getElementById("statLevel").textContent = level;
+
+        const progressPercent = (progress / 5) * 100;
+        document.getElementById("progressFill").style.width = progressPercent + "%";
+
+        // ----------------------
+        // SISTEMA DE LOGROS
+        // ----------------------
+        const achievements = [
+            { id: "firstGame", text: "🎮 Primer Juego", unlocked: games >= 1 },
+            { id: "score10", text: "🔥 Puntaje 10+", unlocked: highScore >= 10 },
+            { id: "games5", text: "🕹️ Máquina de Juegos (5 partidas)", unlocked: games >= 5 },
+            { id: "games10", text: "🏅 Jugador Constante (10 partidas)", unlocked: games >= 10 },
+            { id: "level5", text: "🌟 Nivel 5 Alcanzado", unlocked: level >= 5 },
+        ];
+
+        const list = document.getElementById("achievementsList");
+        achievements.forEach(a => {
+            const li = document.createElement("li");
+            li.textContent = a.text;
+            li.classList.add("achievement");
+            if (a.unlocked) {
+                li.classList.add("unlocked");
+            } else {
+                li.classList.add("locked");
+            }
+            list.appendChild(li);
+        });
+    </script>
+    <script>
+        // Recuperar avatar guardado
+        const savedAvatar = localStorage.getItem("playerAvatar");
+        const playerAvatar = document.getElementById("playerAvatar");
+
+        if (savedAvatar) {
+            playerAvatar.src = savedAvatar;
+        } else {
+            playerAvatar.src = "https://i.ibb.co/7VZzjR1/avatar1.png"; // avatar por defecto
+        }
+
+        // Manejo de selección de avatares
+        document.querySelectorAll(".avatarBtn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const selected = btn.getAttribute("data-avatar");
+                playerAvatar.src = selected;
+                localStorage.setItem("playerAvatar", selected);
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

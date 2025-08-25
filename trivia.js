@@ -1,3 +1,8 @@
+// Mostrar perfil del usuario
+const username = localStorage.getItem("username") || "Invitado";
+const avatar = localStorage.getItem("avatar") || "👾";
+document.getElementById("userProfile").textContent = `Jugador: ${avatar} ${username}`;
+
 // Preguntas de prueba
 const preguntas = [
     {
@@ -81,16 +86,32 @@ nextBtn.addEventListener("click", () => {
         optionsDiv.innerHTML = "";
         resultText.textContent = `Tu puntaje final: ${score}/${preguntas.length}`;
 
-        // Guardar récord personal
+        // Guardar récord si es mejor
         if (score > highScore) {
             localStorage.setItem("highScore", score);
             highScore = score;
-            highScoreText.textContent = `Récord personal: ${highScore}`;
-            resultText.textContent += " 🎉 ¡Nuevo récord personal!";
+            highScoreText.textContent = `🏅 Récord personal: ${highScore}`;
+            resultText.textContent += " 🎉 ¡Nuevo récord!";
         }
+
+        // 📊 Actualizar estadísticas
+        let games = parseInt(localStorage.getItem("games") || 0);
+        let totalScore = parseInt(localStorage.getItem("totalScore") || 0);
+
+        games++;
+        totalScore += score;
+
+        localStorage.setItem("games", games);
+        localStorage.setItem("totalScore", totalScore);
+
+        // Mostrar mensaje con nivel
+        const level = Math.floor(totalScore / 5) + 1;
+        resultText.textContent += ` | Nivel actual: ${level}`;
+
         nextBtn.style.display = "none";
     }
 });
+
 
 // Iniciar trivia
 mostrarPregunta();
