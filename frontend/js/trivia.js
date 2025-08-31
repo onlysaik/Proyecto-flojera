@@ -1,7 +1,15 @@
+import { getUser, updateUser, getLogros, addLogro } from "./api.js";
+
 // Mostrar perfil del usuario
 const username = localStorage.getItem("username") || "Invitado";
 const avatar = localStorage.getItem("avatar") || "👾";
-document.getElementById("userProfile").textContent = `Jugador: ${avatar} ${username}`;
+const avatarImg = localStorage.getItem("playerAvatar");
+const userProfile = document.getElementById("userProfile");
+if (avatarImg) {
+    userProfile.innerHTML = `<img src="${avatarImg}" alt="Avatar" width="32" style="vertical-align:middle;border-radius:50%;"> ${username}`;
+} else {
+    userProfile.textContent = `Jugador: ${avatar} ${username}`;
+}
 
 // Preguntas de prueba
 const preguntas = [

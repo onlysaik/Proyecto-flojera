@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Gamer Otaku</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
     <h1>🎮 Bienvenido a tu Portal Gamer Otaku 🎌</h1>
 
     <!-- Perfil -->
-    <input type="text" id="username" placeholder="Ingresa tu nombre gamer">
-    <select id="avatar">
+    <input type="text" id="inputUsername" placeholder="Ingresa tu nombre gamer">
+    <select id="inputAvatar">
         <option value="😎">😎</option>
         <option value="🐉">🐉</option>
         <option value="👾">👾</option>
         <option value="🦊">🦊</option>
         <option value="🎌">🎌</option>
     </select>
-
     <br><br>
     <button id="btnEntrar">Entrar</button>
 </div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+document.getElementById("btnEntrar").onclick = function() {
+    const username = document.getElementById("inputUsername").value || "Invitado";
+    const avatar = document.getElementById("inputAvatar").value || "👾";
+    localStorage.setItem("username", username);
+    localStorage.setItem("avatar", avatar);
+    window.location.href = "main.html";
+};
+</script>
 </body>
 </html>
